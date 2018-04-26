@@ -21,7 +21,7 @@ export class ReviewsComponent implements OnInit {
       }
            
   
-    wipeRview(){      
+    wipeReview(){      
         this.newReview = {
           id: -1,
           createddate: "",
