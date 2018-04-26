@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GemModel } from '../gem-model';
 import {ReviewModel} from '../review-model';
+import { Md5 } from 'ts-md5/dist/md5';
+import {AvatarService} from '../avatar.service';
+
 
 @Component({
   selector: 'app-reviews',
@@ -14,7 +17,7 @@ export class ReviewsComponent implements OnInit {
      newReview: ReviewModel;
     
     
-     constructor() { }
+     constructor(private avatarService: AvatarService) { }
 
   ngOnInit() {
       this.wipeReview();
@@ -34,4 +37,6 @@ export class ReviewsComponent implements OnInit {
         this.gem.reviews.push(this.newReview);
         this.ngOnInit();
 }
+   
+    
 }
