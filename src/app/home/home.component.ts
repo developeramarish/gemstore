@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {GemModel} from '../gem-model';
 import { CartModel } from '../cart-model';
 import { CartItemModel } from '../cart-item-model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -46,9 +47,15 @@ export class HomeComponent implements OnInit {
         reviews: []
          }]
     @Input() homeCart: CartModel;
-  constructor() { }
+  constructor(private httpClient: HttpClient){
+        
+    }
 
   ngOnInit() {
+      this.httpClient.get('/assets/gems.json').subscribe((data:
+        GemModel[]) => {
+          this.homeGems = data;
+      });
   }
 
 }
