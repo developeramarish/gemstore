@@ -1,16 +1,11 @@
-<div class="card" style="width: 25rem; margin-left: 30px">
-
-    <img [src]="gem.fullImagePath" class="card-img-top"  [alt]="gem.name">
-
-    <div class="card-body">
-
-        <h5 class="card-title">{{gem.name}}</h5>
-        <app-tabs [gem]="gem"></app-tabs>
-        <p>{{gem.price | currency}} </p>
-        
-        <p>{{gem.id}}</p>
-        
-        <button (click)="addToCart()" *ngIf="gem.inventory > 0" class="btn btn-default">Add to Cart</button>
-        <button *ngIf="gem.inventory <= 0" class="btn btn-danger" disabled>Sold Out</button>
-    </div>
+<div class="card">
+  <img class="card-img-top" [src]="gem.fullImagePath" [alt]="gem.name">
+  <div class="card-body"  >
+    <h5 class="card-title">{{ gem.name }}</h5>
+      <h2 class="card-text">{{gem.price | currency}}</h2>
+      <app-tabs [gem]="gem"></app-tabs>
+      
+    <button (click)="addToCart()" *ngIf="gem.inventory > 0" class="btn btn-default">Add to Cart</button>
+<button *ngIf="gem.inventory <= 0" class="btn btn-danger" disabled>Sold Out</button>
+  </div>
 </div>

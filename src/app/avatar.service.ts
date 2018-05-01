@@ -8,7 +8,10 @@ export class AvatarService {
   constructor() { }
   
     generate(email: string){
-        return "https://2.gravatar.com/avatar/" + Md5.hashStr(email);
+       
+         
+        return "https://2.gravatar.com/avatar/"
+            + Md5.hashStr(email);
     }
 
 }

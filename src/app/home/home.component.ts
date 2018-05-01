@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {GemModel} from '../gem-model';
+
+import { GemModel } from '../gem-model'
 import { CartModel } from '../cart-model';
 import { CartItemModel } from '../cart-item-model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +13,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+    
     homeGems: GemModel[] = [{
         id: 1,
         name: 'Dodecahedron',
@@ -19,10 +23,10 @@ export class HomeComponent implements OnInit {
         inventory: 10,
         colors: ["red", "blue", "green"],
         reviews: [{
-            id:1,
+            id: 1,
             createddate: '4/25/2018',
             rating: 5,
-            author:'joe@codingtemple.com',
+            author: 'joe@codingtemple.com',
             body: 'I love this'
         }]
         },
@@ -46,14 +50,19 @@ export class HomeComponent implements OnInit {
         colors: ["red", "blue", "purple"],
         reviews: []
          }]
-    @Input() homeCart: CartModel;
-  constructor(private httpClient: HttpClient){
-        
-    }
+
+    homeCart: CartModel;
+    
+   
+  constructor(private httpClient: HttpClient, private cartService: CartService) { }
 
   ngOnInit() {
-      this.httpClient.get('/assets/gems.json').subscribe((data:
-        GemModel[]) => {
+      this.homeCart = this.cartService.cart;
+      //console.log(JSON.stringify(homeGems));
+      //this.httpClient.get('/assets/gems.json').subscribe((data: GemModel[]) => {
+         // this.homeGems = data;
+      //});
+      this.httpClient.get('http://localhost:55915/api/values').subscribe((data: GemModel[]) => {
           this.homeGems = data;
       });
   }
